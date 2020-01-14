@@ -172,6 +172,24 @@ db.once('open', function (callback) {
             res.json({message: "Inga värden"});
         }
     });
+    // Lägga till admin
+    /* app.post("/login/add", function(req, res) {
+        //Ny instans av Recipes
+        let admin = new Admin();
+
+        //Skapa objekt
+        admin.username = req.body.username;
+        admin.password = req.body.password;
+
+        //Spara recept till databas och skriv ut ev. felmeddelanden
+        admin.save(function(err) {
+            if(err) {
+                res.send(err);
+            }
+            res.json({message: "Admin tillagd"});
+        });
+
+    }); */
 });
 
 //Nummer för vilken port den lokala servern ska starta på
