@@ -29,7 +29,8 @@ app.all('/login/*', function(req, res, next) {
 });
 
 // Mongoose-anslutning
-mongoose.connect('mongodb://localhost:27017/recipes', { useMongoClient: true, useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/recipes', { useMongoClient: true, useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://EmmaN:emmanorgren1996@emmascluster-shard-00-00-j783x.mongodb.net:27017,emmascluster-shard-00-01-j783x.mongodb.net:27017,emmascluster-shard-00-02-j783x.mongodb.net:27017/test?ssl=true&replicaSet=EmmasCluster-shard-0&authSource=admin&retryWrites=true&w=majority', { useMongoClient: true, useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 
 //Läs in schema för recept
