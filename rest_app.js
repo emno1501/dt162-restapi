@@ -199,3 +199,13 @@ let port = 3000;
 app.listen(port, function() {
     console.log("Servern startad på port " + port);
 });
+
+/* "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0-beta.2",
+    "multer": "^1.4.2"
+  }, */
