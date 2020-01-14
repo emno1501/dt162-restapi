@@ -11,7 +11,7 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Middleware: Tillåt CRUD-metoder och anrop utifrån
+//Middleware: Tillåt CRUD-metoder och anrop utifrån för anrop till alla sökvägar som börjar med /api/
 app.all('/api/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -19,9 +19,9 @@ app.all('/api/*', function(req, res, next) {
     res.header("Content-Type: application/json; charset=UTF-8");
 	next();
 });
-
+//Middleware: Tillåt CRUD-metoder och anrop endast från specifik url för anrop till alla sökvägar som börjar med /login/
 app.all('/login/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://studenter.miun.se/~emno1501/dt162g/admin/*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
     res.header("Content-Type: application/json; charset=UTF-8");
@@ -29,7 +29,9 @@ app.all('/login/*', function(req, res, next) {
 });
 
 // Mongoose-anslutning
+// Lokal anslutning
 // mongoose.connect('mongodb://localhost:27017/recipes', { useMongoClient: true, useNewUrlParser: true, useUnifiedTopology: true });
+// Anslutning till MongoDB Atlas
 mongoose.connect('mongodb://EmmaN:emmanorgren1996@emmascluster-shard-00-00-j783x.mongodb.net:27017,emmascluster-shard-00-01-j783x.mongodb.net:27017,emmascluster-shard-00-02-j783x.mongodb.net:27017/test?ssl=true&replicaSet=EmmasCluster-shard-0&authSource=admin&retryWrites=true&w=majority', { useMongoClient: true, useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 
@@ -138,7 +140,7 @@ db.once('open', function (callback) {
     // Logga in admin
     ////////////////////////////////////////////
 
-    // Metod GET - för att hämta alla recept
+    // Metod GET - för att hämta inloggningsuppgifter
     app.get("/login/get", function(req, res) {
         
         Admin.find(function(err, Admin){
@@ -149,7 +151,7 @@ db.once('open', function (callback) {
         });
     });
 
-    //Metod PUT - Uppdatera recept
+    //Metod PUT - Uppdatera användarnamn och lösenord
     app.put("/login/update/:id", function(req, res) {
         //Lagra det id-värde som skickats med i url:en i variabeln id
         let id = req.params.id;
