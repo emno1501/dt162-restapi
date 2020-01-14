@@ -192,12 +192,14 @@ db.once('open', function (callback) {
     }); */
 });
 
+
 //Nummer för vilken port den lokala servern ska starta på
-let port = 3000;
+//let port = 3000;
+const PORT = process.env.PORT || 3000;
 
 //Starta server
-app.listen(port, function() {
-    console.log("Servern startad på port " + port);
+app.listen(PORT, function() {
+    console.log("Servern startad på port " + PORT);
 });
 
 /* "devDependencies": {
